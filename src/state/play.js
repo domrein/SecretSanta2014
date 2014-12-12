@@ -2,10 +2,29 @@ var Play = {
   preload: function() {
   },
   create: function() {
-    this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    this.game.stage.backgroundColor = '#000000';
+    var _this = this;
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.physics.arcade.gravity.y = 2500;
 
-    this.game.add.sprite(0, 0, "preloadImage");
+    game.stage.backgroundColor = "#2222AA";
+
+    game.add.sprite(0, 0, "preloadImage");
+
+    // draw score
+    var loveSize = 30
+    this.scoreText = game.add.text(this.game.width - 250, 15, "LOVE:", {fill: "#FFB6C1", font: loveSize + "px Impact"});
+
+    this.player = game.add.sprite(50, 300, "Dave");
+    game.physics.enable(this.player, Phaser.Physics.ARCADE);
+    this.player.body.collideWorldBounds = true;
+    this.player.body.bounce.y = 0.5;
+
+    
+
+    this.game.input.onDown.add(function(event) {
+      _this.player.body.velocity.y -= 1000;
+    });
+
 
     // bg = game.add.tileSprite(0, 0, 800, 600, "background");
     // bg.fixedToCamera = true;
