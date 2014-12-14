@@ -25,6 +25,10 @@ var Play = {
       }
     });
 
+    this.buildings = game.add.group();
+
+    this.makeBuilding(500, 200);
+
     // bg = game.add.tileSprite(0, 0, 800, 600, "background");
     // bg.fixedToCamera = true;
     
@@ -47,13 +51,32 @@ var Play = {
     // jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   },
   update: function() {
-
+    game.physics.arcade.collide(this.player, this.buildings, function(player, building) {
+      // playerBullet.alive = false;
+      // enemy.destroy();
+    });
   },
   render: function() {
 
   },
-  makeBuilding: function(x, y) {
-    // var building = game.add.sprite()
+  makeBuilding: function(x, width, height) {
+    var building = game.add.sprite(x, y);
+    game.physics.enable(building, Phaser.Physics.ARCADE);
+    building.body.allowGravity = false;
+    building.body.immovable = false;
+    building.body.width = 150;
+    building.body.height = 400;
+    
+    var buildingLeft = game.add.sprite(0, 0, "BuildingLeft");
+    var buildingMiddle = game.add.sprite(50, 0, "BuildingMiddle");
+    var buildingRight = game.add.sprite(100, 0, "BuildingRight");
+    building.addChild(buildingLeft);
+    building.addChild(buildingMiddle);
+    building.addChild(buildingRight);
+
+    building.body.velocity.x = -50;
+
+    this.buildings.add(building);
   }
 };
 
