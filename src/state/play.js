@@ -5,7 +5,7 @@ var Play = {
     var _this = this;
     
     // state variables
-    this.gameSpeed = 200;
+    this.gameSpeed = 300;
     
     // init physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -13,7 +13,7 @@ var Play = {
 
     // add sprite groups
     game.stage.backgroundColor = "#2222AA";
-    game.add.sprite(0, 0, "preloadImage");
+    game.add.sprite(0, 0, "Background");
     this.buildings = game.add.group();
     this.kittens = game.add.group();
 
@@ -29,11 +29,20 @@ var Play = {
     this.score = 0;
     this.scoreText = game.add.text(this.game.width - 250, 15, "LOVE:", {fill: "#FFB6C1", font: loveSize + "px Impact"});
 
-    this.player = game.add.sprite(70, 200, "Dave");
-    this.player.anchor.setTo(.5, .5);
+    this.player = game.add.sprite(70, 200);
+    // this.player.anchor.setTo(.5, .5);
     game.physics.enable(this.player, Phaser.Physics.ARCADE);
-    this.player.body.collideWorldBounds = true;
+    this.player.body.width = 124;
+    this.player.body.height = 96;
+    // this.player.body.collideWorldBounds = true;
     this.player.body.bounce.y = 0.5;
+
+    var motoBody = this.game.add.sprite(0, 0, "DaveBikeBack");
+    var motoRider = this.game.add.sprite(0, 0, "Dave");
+    var motoFront = this.game.add.sprite(0, 0, "DaveBikeFront");
+    this.player.addChild(motoBody);
+    this.player.addChild(motoRider);
+    this.player.addChild(motoFront);
 
     this.game.input.onDown.add(function(event) {
       if (_this.playerJumpCount) {
@@ -42,7 +51,7 @@ var Play = {
       }
     });
 
-    this.makeBuilding(-100, 15, 100);
+    this.makeBuilding(0, 25, 100);
 
     // the point the motorcycle tries to be at
     this.chaseX = 100;
@@ -65,6 +74,18 @@ var Play = {
       else if (this.player.body.position.x > this.chaseX) {
         this.player.body.velocity.x = this.gameSpeed - (this.player.body.position.x - this.chaseX);
       }
+    }
+
+    // loop over buildings
+    // if the right of the last building is on the screen, then we need to generate a new building
+    var maxRight = 0;
+    this.buildings.children.forEach(function(building) {
+      if (building.body.right > maxRight) {
+        maxRight = building.body.right;
+      }
+    });
+    if (maxRight < game.width) {
+      this.makeBuilding(game.width + this.gameSpeed * .5, Math.floor(Math.random() * 10) + 2, Math.floor(Math.random() * 300) + 30);
     }
 
     game.physics.arcade.collide(this.player, this.buildings, function(player, building) {
@@ -102,17 +123,13 @@ var Play = {
     game.physics.enable(building, Phaser.Physics.ARCADE);
     building.body.allowGravity = false;
     building.body.immovable = true;
-    building.body.width = (width + 2) * 50;
+    building.body.width = width * 63;
     building.body.height = 400;
     
-    var buildingLeft = game.add.sprite(0, 0, "BuildingLeft");
-    building.addChild(buildingLeft);
     for (var i = 0; i < width; i ++) {
-      var buildingMiddle = game.add.sprite((i + 1) * 50, 0, "BuildingMiddle");
-      building.addChild(buildingMiddle);
+      var buildingPiece = game.add.sprite(i * 63, 0, "Building");
+      building.addChild(buildingPiece);
     }
-    var buildingRight = game.add.sprite((width + 1) * 50, 0, "BuildingRight");
-    building.addChild(buildingRight);
 
     building.body.velocity.x = -this.gameSpeed;
 
@@ -127,7 +144,7 @@ var Play = {
     var kittenLocations = [];
     for (i = 0; i < width + 2; i ++) {
       if (Math.random() > .7) {
-        var kitten = game.add.sprite(x + i * 50, game.height - height - 180, "Kitty");
+        var kitten = game.add.sprite(x + i * 63, game.height - height - 64 - 30, "Kitty");
         game.physics.enable(kitten, Phaser.Physics.ARCADE);
         kitten.body.velocity.x = -this.gameSpeed;
         kitten.body.bounce.y = 1;

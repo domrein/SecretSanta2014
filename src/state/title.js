@@ -24,8 +24,8 @@ var Title = {
     titleText.position.y = game.height / 2 - 70;
 
     this.game.input.onDown.add(function(event) {
-      game.scale.startFullScreen();
-      // game.state.start("Play");
+      // game.scale.startFullScreen();
+      game.state.start("Play");
     });
   },
   update: function() {
