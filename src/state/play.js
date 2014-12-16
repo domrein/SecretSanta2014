@@ -106,6 +106,10 @@ var Play = {
       kitten.destroy();
     });
 
+    if (this.player.body.y > game.height) {
+      game.state.start("Title");
+    }
+
     // rotate when jumping
     // console.log(this.player.body.velocity.y);
     // if (this.player.body.velocity.y > 20) {
@@ -144,7 +148,7 @@ var Play = {
     var kittenLocations = [];
     for (i = 0; i < width + 2; i ++) {
       if (Math.random() > .7) {
-        var kitten = game.add.sprite(x + i * 63, game.height - height - 64 - 30, "Kitty");
+        var kitten = game.add.sprite(x + i * 63, game.height - height - 64 - Math.floor(Math.random() * 20) - 10, "Kitty");
         game.physics.enable(kitten, Phaser.Physics.ARCADE);
         kitten.body.velocity.x = -this.gameSpeed;
         kitten.body.bounce.y = 1;
