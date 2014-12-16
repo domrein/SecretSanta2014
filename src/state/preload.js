@@ -1,12 +1,16 @@
 var Preload = {
   preload: function() {
-    this.game.load.image("preloadImage", "../../assets/preloadImage.png");
-    this.game.load.image("Dave", "../../assets/Dave.png");
-    this.game.load.image("Kitty", "../../assets/Kitty.png");
-    this.game.load.image("Heart", "../../assets/Heart.png");
-    this.game.load.image("BuildingLeft", "../../assets/BuildingLeft.png");
-    this.game.load.image("BuildingMiddle", "../../assets/BuildingMiddle.png");
-    this.game.load.image("BuildingRight", "../../assets/BuildingRight.png");
+    this.game.load.image("Background", "assets/bg.png");
+    this.game.load.image("Dave", "assets/Motorcycle_Rider.png");
+    this.game.load.image("DaveBikeBack", "assets/MotorCycleBody.png");
+    this.game.load.image("DaveBikeFront", "assets/Motorcycle_dash.png");
+    this.game.load.image("Kitty", "assets/cat.png");
+    this.game.load.image("Heart", "assets/heart.png");
+    this.game.load.image("Building", "assets/buildingTile.png");
+    this.game.load.image("TitleText", "assets/title.png");
+    this.game.load.image("FireWindow", "assets/fireWindow.png");
+    this.game.load.image("FireTop", "assets/firerooftop.png");
+    this.game.load.image("FireAir", "assets/fireAirborne.png");
   },
   create: function() {
     this.game.state.start("Title");
