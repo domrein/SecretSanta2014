@@ -6,9 +6,9 @@ var Title = {
     this.game.add.sprite(0, 0, "Background");
     
     var roof = this.game.add.tileSprite(0, 380, game.width, game.height - 380, "Building");
-    roof.autoScroll(-200, 0);
+    roof.autoScroll(-400, 0);
 
-    var dave = this.game.add.sprite(300, 300);
+    var dave = this.game.add.sprite(300, 286);
     var motoBody = this.game.add.sprite(0, 0, "DaveBikeBack");
     var motoRider = this.game.add.sprite(0, 0, "Dave");
     var motoFront = this.game.add.sprite(0, 0, "DaveBikeFront");
