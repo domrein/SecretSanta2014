@@ -11,9 +11,13 @@ var Preload = {
     this.game.load.image("FireWindow", "assets/fireWindow.png");
     this.game.load.image("FireTop", "assets/firerooftop.png");
     this.game.load.image("FireAir", "assets/fireAirborne.png");
+
+    game.load.audio("Music", ["assets/MegaBlaster.mp3", "assets/MegaBlaster.ogg"]);
   },
   create: function() {
     this.game.state.start("Title");
+    var music = game.add.audio("Music", .7, true);
+    music.play();
   },
   update: function() {
   },

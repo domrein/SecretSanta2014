@@ -5,7 +5,7 @@ var Play = {
     var _this = this;
     
     // state variables
-    this.gameSpeed = 300;
+    this.gameSpeed = 400;
     
     // init physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -68,6 +68,7 @@ var Play = {
       // move back and forth towards the floating chase x point
       this.chaseAngle += .05;
       this.chaseX = 70 + Math.sin(this.chaseAngle) * 30;
+      // this.player.body.position.x = this.chaseX;
       if (this.player.body.position.x < this.chaseX) {
         this.player.body.velocity.x = this.gameSpeed + (this.chaseX - this.player.body.position.x);
       }
@@ -75,11 +76,23 @@ var Play = {
         this.player.body.velocity.x = this.gameSpeed - (this.player.body.position.x - this.chaseX);
       }
     }
+    else {
+      if (this.player.body.position.x < this.chaseX) {
+        this.player.body.velocity.x = (this.chaseX - this.player.body.position.x);
+      }
+      else if (this.player.body.position.x > this.chaseX) {
+        this.player.body.velocity.x = (this.player.body.position.x - this.chaseX);
+      }
+    }
+
+    this.gameSpeed += 0.1;
 
     // loop over buildings
     // if the right of the last building is on the screen, then we need to generate a new building
     var maxRight = 0;
     this.buildings.children.forEach(function(building) {
+      building.body.velocity.x = -_this.gameSpeed;
+
       if (building.body.right > maxRight) {
         maxRight = building.body.right;
       }
@@ -90,6 +103,7 @@ var Play = {
 
     game.physics.arcade.collide(this.player, this.buildings, function(player, building) {
       _this.playerOnBuilding = true;
+      _this.player.body.velocity.x = _this.gameSpeed + (_this.chaseX - _this.player.body.position.x);
     });
 
     game.physics.arcade.collide(this.buildings, this.kittens);
@@ -123,17 +137,18 @@ var Play = {
   },
   makeBuilding: function(x, width, height) {
     var _this = this;
-    var building = game.add.sprite(x, game.height - height);
+    var building = this.game.add.tileSprite(x, game.height - height, width * 63, height, "Building");
+    // var building = game.add.sprite(x, game.height - height);
     game.physics.enable(building, Phaser.Physics.ARCADE);
     building.body.allowGravity = false;
     building.body.immovable = true;
     building.body.width = width * 63;
     building.body.height = 400;
     
-    for (var i = 0; i < width; i ++) {
-      var buildingPiece = game.add.sprite(i * 63, 0, "Building");
-      building.addChild(buildingPiece);
-    }
+    // for (var i = 0; i < width; i ++) {
+    //   var buildingPiece = game.add.sprite(i * 63, 0, "Building");
+    //   building.addChild(buildingPiece);
+    // }
 
     building.body.velocity.x = -this.gameSpeed;
 
