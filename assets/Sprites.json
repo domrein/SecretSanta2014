@@ -1,0 +1,201 @@
+{"frames": {
+
+"Background_1.png":
+{
+	"frame": {"x":2,"y":2,"w":800,"h":450},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":800,"h":450},
+	"sourceSize": {"w":800,"h":450},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"BuildingTile_1.png":
+{
+	"frame": {"x":2,"y":454,"w":63,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":63,"h":96},
+	"sourceSize": {"w":63,"h":96},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Cat_1.png":
+{
+	"frame": {"x":67,"y":454,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"FireAirborne_1.png":
+{
+	"frame": {"x":133,"y":454,"w":27,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":27,"h":39},
+	"sourceSize": {"w":27,"h":39},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"FireAirborne_2.png":
+{
+	"frame": {"x":162,"y":454,"w":27,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":27,"h":39},
+	"sourceSize": {"w":27,"h":39},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"FireAirborne_3.png":
+{
+	"frame": {"x":191,"y":454,"w":27,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":27,"h":39},
+	"sourceSize": {"w":27,"h":39},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"FireRooftop_1.png":
+{
+	"frame": {"x":220,"y":454,"w":50,"h":38},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":38},
+	"sourceSize": {"w":50,"h":38},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"FireRooftop_2.png":
+{
+	"frame": {"x":272,"y":454,"w":50,"h":38},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":38},
+	"sourceSize": {"w":50,"h":38},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"FireRooftop_3.png":
+{
+	"frame": {"x":324,"y":454,"w":50,"h":38},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":38},
+	"sourceSize": {"w":50,"h":38},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"FireWindow_1.png":
+{
+	"frame": {"x":376,"y":454,"w":27,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":27,"h":39},
+	"sourceSize": {"w":27,"h":39},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"FireWindow_2.png":
+{
+	"frame": {"x":405,"y":454,"w":27,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":27,"h":39},
+	"sourceSize": {"w":27,"h":39},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"FireWindow_3.png":
+{
+	"frame": {"x":434,"y":454,"w":27,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":27,"h":39},
+	"sourceSize": {"w":27,"h":39},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Heart_1.png":
+{
+	"frame": {"x":463,"y":454,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"MotorcycleBody_1.png":
+{
+	"frame": {"x":497,"y":454,"w":124,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":96},
+	"sourceSize": {"w":124,"h":96},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"MotorcycleBody_2.png":
+{
+	"frame": {"x":623,"y":454,"w":124,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":96},
+	"sourceSize": {"w":124,"h":96},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"MotorcycleBody_3.png":
+{
+	"frame": {"x":2,"y":552,"w":124,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":96},
+	"sourceSize": {"w":124,"h":96},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"MotorcycleDash_1.png":
+{
+	"frame": {"x":128,"y":552,"w":124,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":96},
+	"sourceSize": {"w":124,"h":96},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"MotorcycleRider_1.png":
+{
+	"frame": {"x":254,"y":552,"w":124,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":96},
+	"sourceSize": {"w":124,"h":96},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"MotorcycleRider_2.png":
+{
+	"frame": {"x":380,"y":552,"w":124,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":96},
+	"sourceSize": {"w":124,"h":96},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"MotorcycleRider_3.png":
+{
+	"frame": {"x":506,"y":552,"w":124,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":96},
+	"sourceSize": {"w":124,"h":96},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Title_1.png":
+{
+	"frame": {"x":2,"y":650,"w":656,"h":246},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":656,"h":246},
+	"sourceSize": {"w":656,"h":246},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Sprites.png",
+	"format": "RGBA8888",
+	"size": {"w":804,"h":898},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:35cf985535b57b66c581669c5f4a92c9:7d55354e5a75d5d7652cf93022e61f47:3cdb13131f548fed5fbd9288201b06ea$"
+}
+}
