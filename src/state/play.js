@@ -5,7 +5,7 @@ var Play = {
     var _this = this;
     
     // state variables
-    this.gameSpeed = 400;
+    this.gameSpeed = 650;
     
     // init physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -29,13 +29,13 @@ var Play = {
     this.score = 0;
     this.scoreText = game.add.text(this.game.width - 250, 15, "LOVE:", {fill: "#FFB6C1", font: loveSize + "px Impact"});
 
-    this.player = game.add.sprite(70, 200);
+    this.player = game.add.sprite(70, game.height - 96 - 100);
     // this.player.anchor.setTo(.5, .5);
     game.physics.enable(this.player, Phaser.Physics.ARCADE);
     this.player.body.width = 124;
     this.player.body.height = 96;
     // this.player.body.collideWorldBounds = true;
-    this.player.body.bounce.y = 0.5;
+    this.player.body.bounce.y = 0.35;
 
     var motoBody = this.game.add.sprite(0, 0, "DaveBikeBack");
     var motoRider = this.game.add.sprite(0, 0, "Dave");
@@ -68,30 +68,20 @@ var Play = {
       // move back and forth towards the floating chase x point
       this.chaseAngle += .05;
       this.chaseX = 70 + Math.sin(this.chaseAngle) * 30;
-      // this.player.body.position.x = this.chaseX;
-      if (this.player.body.position.x < this.chaseX) {
-        this.player.body.velocity.x = this.gameSpeed + (this.chaseX - this.player.body.position.x);
-      }
-      else if (this.player.body.position.x > this.chaseX) {
-        this.player.body.velocity.x = this.gameSpeed - (this.player.body.position.x - this.chaseX);
-      }
-    }
-    else {
-      if (this.player.body.position.x < this.chaseX) {
-        this.player.body.velocity.x = (this.chaseX - this.player.body.position.x);
-      }
-      else if (this.player.body.position.x > this.chaseX) {
-        this.player.body.velocity.x = (this.player.body.position.x - this.chaseX);
-      }
+      
+      this.player.body.position.x = this.chaseX;
     }
 
     this.gameSpeed += 0.1;
+
+    var moveAmount = this.gameSpeed / 70;
 
     // loop over buildings
     // if the right of the last building is on the screen, then we need to generate a new building
     var maxRight = 0;
     this.buildings.children.forEach(function(building) {
-      building.body.velocity.x = -_this.gameSpeed;
+      // building.body.velocity.x = -_this.gameSpeed;
+      building.body.position.x -= moveAmount;
 
       if (building.body.right > maxRight) {
         maxRight = building.body.right;
@@ -101,9 +91,15 @@ var Play = {
       this.makeBuilding(game.width + this.gameSpeed * .5, Math.floor(Math.random() * 10) + 2, Math.floor(Math.random() * 300) + 30);
     }
 
+    this.kittens.children.forEach(function(kitten) {
+      // building.body.velocity.x = -_this.gameSpeed;
+      kitten.body.position.x -= moveAmount;
+    });
+
     game.physics.arcade.collide(this.player, this.buildings, function(player, building) {
       _this.playerOnBuilding = true;
-      _this.player.body.velocity.x = _this.gameSpeed + (_this.chaseX - _this.player.body.position.x);
+      _this.player.body.position.x = _this.chaseX;
+      // _this.player.body.velocity.x = _this.gameSpeed + (_this.chaseX - _this.player.body.position.x);
     });
 
     game.physics.arcade.collide(this.buildings, this.kittens);
@@ -150,7 +146,7 @@ var Play = {
     //   building.addChild(buildingPiece);
     // }
 
-    building.body.velocity.x = -this.gameSpeed;
+    // building.body.velocity.x = -this.gameSpeed;
 
     building.update = function() {
       if (this.body.position.x + this.body.width < 0) {
@@ -162,10 +158,10 @@ var Play = {
     var numKittens = Math.floor(Math.random() * width / 2);
     var kittenLocations = [];
     for (i = 0; i < width + 2; i ++) {
-      if (Math.random() > .7) {
+      if (Math.random() > 0.7) {
         var kitten = game.add.sprite(x + i * 63, game.height - height - 64 - Math.floor(Math.random() * 20) - 10, "Kitty");
         game.physics.enable(kitten, Phaser.Physics.ARCADE);
-        kitten.body.velocity.x = -this.gameSpeed;
+        // kitten.body.velocity.x = -this.gameSpeed;
         kitten.body.bounce.y = 1;
         this.kittens.add(kitten);
       }
