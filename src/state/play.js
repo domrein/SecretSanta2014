@@ -10,6 +10,7 @@ var Play = {
     // init physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = 2500;
+    game.physics.arcade.OVERLAP_BIAS = 30;
 
     // add sprite groups
     game.stage.backgroundColor = "#2222AA";
