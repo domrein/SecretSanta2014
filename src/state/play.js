@@ -13,12 +13,12 @@ var Play = {
 
     // add sprite groups
     game.stage.backgroundColor = "#2222AA";
-    game.add.sprite(0, 0, "Background");
+    game.add.sprite(0, 0, "Sprites", "Background_1.png");
     this.buildings = game.add.group();
     this.kittens = game.add.group();
 
     this.loveEmitter = game.add.emitter(0, 0, 100);
-    this.loveEmitter.makeParticles("Heart");
+    this.loveEmitter.makeParticles("Sprites", ["Heart_1.png"]);
     this.loveEmitter.gravity = -2500;
     // this.loveEmitter.setRotation(0, 0);
     this.loveEmitter.setAlpha(0.9, 0.0, 2000);
@@ -37,9 +37,13 @@ var Play = {
     // this.player.body.collideWorldBounds = true;
     this.player.body.bounce.y = 0.35;
 
-    var motoBody = this.game.add.sprite(0, 0, "DaveBikeBack");
-    var motoRider = this.game.add.sprite(0, 0, "Dave");
-    var motoFront = this.game.add.sprite(0, 0, "DaveBikeFront");
+    var motoBody = this.game.add.sprite(0, 0, "Sprites");
+    motoBody.animations.add("drive", ["MotorcycleBody_1.png", "MotorcycleBody_2.png", "MotorcycleBody_3.png", "MotorcycleBody_2.png"], 15, true);
+    motoBody.play("drive");
+    var motoRider = this.game.add.sprite(0, 0, "Sprites");
+    motoRider.animations.add("drive", ["MotorcycleRider_1.png", "MotorcycleRider_2.png", "MotorcycleRider_3.png", "MotorcycleRider_2.png"], 5, true);
+    motoRider.play("drive");
+    var motoFront = this.game.add.sprite(0, 0, "Sprites", "MotorcycleDash_1.png");
     this.player.addChild(motoBody);
     this.player.addChild(motoRider);
     this.player.addChild(motoFront);
@@ -66,7 +70,7 @@ var Play = {
       this.playerJumpCount = 1;
 
       // move back and forth towards the floating chase x point
-      this.chaseAngle += .05;
+      this.chaseAngle += 0.05;
       this.chaseX = 70 + Math.sin(this.chaseAngle) * 30;
       
       this.player.body.position.x = this.chaseX;
@@ -133,7 +137,7 @@ var Play = {
   },
   makeBuilding: function(x, width, height) {
     var _this = this;
-    var building = this.game.add.tileSprite(x, game.height - height, width * 63, height, "Building");
+    var building = this.game.add.tileSprite(x, game.height - height, width * 63, height, "Sprites", "BuildingTile_1.png");
     // var building = game.add.sprite(x, game.height - height);
     game.physics.enable(building, Phaser.Physics.ARCADE);
     building.body.allowGravity = false;
@@ -159,7 +163,7 @@ var Play = {
     var kittenLocations = [];
     for (i = 0; i < width + 2; i ++) {
       if (Math.random() > 0.7) {
-        var kitten = game.add.sprite(x + i * 63, game.height - height - 64 - Math.floor(Math.random() * 20) - 10, "Kitty");
+        var kitten = game.add.sprite(x + i * 63, game.height - height - 64 - Math.floor(Math.random() * 20) - 10, "Sprites", "Cat_1.png");
         game.physics.enable(kitten, Phaser.Physics.ARCADE);
         // kitten.body.velocity.x = -this.gameSpeed;
         kitten.body.bounce.y = 1;
