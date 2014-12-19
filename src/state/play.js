@@ -15,6 +15,10 @@ var Play = {
     // add sprite groups
     game.stage.backgroundColor = "#2222AA";
     game.add.sprite(0, 0, "Sprites", "Background_1.png");
+
+    this.bgBuildings = this.game.add.tileSprite(0, 0, game.width, game.height, "Sprites", "CityScape1_1.png");
+    this.bgBuildings.autoScroll(-this.gameSpeed / 5.2, 0);
+
     this.buildings = game.add.group();
     this.kittens = game.add.group();
 
@@ -42,21 +46,23 @@ var Play = {
     motoBody.animations.add("drive", ["MotorcycleBody_1.png", "MotorcycleBody_2.png", "MotorcycleBody_3.png", "MotorcycleBody_2.png"], 15, true);
     motoBody.play("drive");
     var motoRider = this.game.add.sprite(0, 0, "Sprites");
-    motoRider.animations.add("drive", ["MotorcycleRider_1.png", "MotorcycleRider_2.png", "MotorcycleRider_3.png", "MotorcycleRider_2.png"], 5, true);
+    motoRider.animations.add("drive", ["MotorcycleRider_1.png", "MotorcycleRider_2.png", "MotorcycleRider_3.png", "MotorcycleRider_2.png"], 25, true);
     motoRider.play("drive");
     var motoFront = this.game.add.sprite(0, 0, "Sprites", "MotorcycleDash_1.png");
     this.player.addChild(motoBody);
     this.player.addChild(motoRider);
     this.player.addChild(motoFront);
 
-    this.game.input.onDown.add(function(event) {
+    function jump(event) {
       if (_this.playerJumpCount) {
         _this.playerJumpCount --;
         _this.player.body.velocity.y = -1000;
-      }
-    });
+      }      
+    }
+    game.input.onDown.add(jump);
+    game.input.keyboard.onDownCallback = jump;
 
-    this.makeBuilding(0, 25, 100);
+    this.makeBuilding(0, 25, 100, false);
 
     // the point the motorcycle tries to be at
     this.chaseX = 100;
@@ -93,7 +99,7 @@ var Play = {
       }
     });
     if (maxRight < game.width) {
-      this.makeBuilding(game.width + this.gameSpeed * .5, Math.floor(Math.random() * 10) + 2, Math.floor(Math.random() * 300) + 30);
+      this.makeBuilding(game.width + this.gameSpeed * .5, Math.floor(Math.random() * 10) + 2, Math.floor(Math.random() * 300) + 30, true);
     }
 
     this.kittens.children.forEach(function(kitten) {
@@ -136,7 +142,7 @@ var Play = {
   },
   render: function() {
   },
-  makeBuilding: function(x, width, height) {
+  makeBuilding: function(x, width, height, spawnKittens) {
     var _this = this;
     var building = this.game.add.tileSprite(x, game.height - height, width * 63, height, "Sprites", "BuildingTile_1.png");
     // var building = game.add.sprite(x, game.height - height);
@@ -159,16 +165,24 @@ var Play = {
       }
     };
 
-    // place kittens randomly above building
-    var numKittens = Math.floor(Math.random() * width / 2);
-    var kittenLocations = [];
-    for (i = 0; i < width + 2; i ++) {
-      if (Math.random() > 0.7) {
-        var kitten = game.add.sprite(x + i * 63, game.height - height - 64 - Math.floor(Math.random() * 20) - 10, "Sprites", "Cat_1.png");
-        game.physics.enable(kitten, Phaser.Physics.ARCADE);
-        // kitten.body.velocity.x = -this.gameSpeed;
-        kitten.body.bounce.y = 1;
-        this.kittens.add(kitten);
+    if (spawnKittens) {
+      // place kittens randomly above building
+      var numKittens = Math.floor(Math.random() * width / 2);
+      var kittenLocations = [];
+      for (i = 1; i < width; i ++) {
+        if (Math.random() > 0.7) {
+          var catNum = Math.floor(Math.random() * 3) + 1;
+          var hopHeight = Math.floor(Math.random() * 20) - 10;
+          // var hopHeight = 0;
+          var kitten = game.add.sprite(x + i * 63, game.height - height - 64 - hopHeight, "Sprites");
+          kitten.animations.add("hop", ["Cat" + catNum + "_1.png", "Cat" + catNum + "_2.png"], 25, true);
+          kitten.play("hop");
+          game.physics.enable(kitten, Phaser.Physics.ARCADE);
+          // kitten.body.velocity.x = -this.gameSpeed;
+          kitten.body.bounce.y = 1;
+          // kitten.body.immovable = true;
+          this.kittens.add(kitten);
+        }
       }
     }
 

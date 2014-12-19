@@ -5,6 +5,9 @@ var Preload = {
     game.load.audio("Music", ["assets/MegaBlaster.mp3", "assets/MegaBlaster.ogg"]);
   },
   create: function() {
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.pageAlignVertically = true;
+    game.scale.pageAlignHorizontally = true;
     this.game.state.start("Title");
     var music = game.add.audio("Music", 0.7, true);
     music.play();
