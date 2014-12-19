@@ -20,7 +20,18 @@ var Play = {
     this.bgBuildings.autoScroll(-this.gameSpeed / 5.2, 0);
 
     this.buildings = game.add.group();
+    
     this.kittens = game.add.group();
+    for (var i = 0; i < 20; i ++) {
+      var catNum = Math.floor(Math.random() * 3) + 1;
+      var kitten = game.add.sprite(0, 0, "Sprites");
+      kitten.animations.add("hop", ["Cat" + catNum + "_1.png", "Cat" + catNum + "_2.png"], 25, true);
+      kitten.play("hop");
+      game.physics.enable(kitten, Phaser.Physics.ARCADE);
+      kitten.body.bounce.y = 1;
+      this.kittens.add(kitten);
+      kitten.kill();
+    }
 
     // draw score
     var loveSize = 30;
@@ -127,7 +138,8 @@ var Play = {
       _this.loveEmitter.y = kitten.body.position.y;
       _this.loveEmitter.start(true, 2000, null, 6);
 
-      kitten.destroy();
+      // kitten.destroy();
+      kitten.kill();
     });
 
     // update score
@@ -181,17 +193,11 @@ var Play = {
       var kittenLocations = [];
       for (i = 1; i < width; i ++) {
         if (Math.random() > 0.7) {
-          var catNum = Math.floor(Math.random() * 3) + 1;
           var hopHeight = Math.floor(Math.random() * 20) + 10;
-          // var hopHeight = 0;
-          var kitten = game.add.sprite(x + i * 63, game.height - height - 64 - hopHeight, "Sprites");
-          kitten.animations.add("hop", ["Cat" + catNum + "_1.png", "Cat" + catNum + "_2.png"], 25, true);
-          kitten.play("hop");
-          game.physics.enable(kitten, Phaser.Physics.ARCADE);
-          // kitten.body.velocity.x = -this.gameSpeed;
-          kitten.body.bounce.y = 1;
-          // kitten.body.immovable = true;
-          this.kittens.add(kitten);
+          var kitten = this.kittens.getFirstExists(false);
+          if (kitten) {
+            kitten.reset(x + i * 63, game.height - height - 64 - hopHeight);
+          }
         }
       }
     }

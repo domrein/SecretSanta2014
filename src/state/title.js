@@ -38,7 +38,8 @@ var Title = {
     this.game.input.onDown.add(startGame);
 
     if (highScore) {
-      var scoreText = game.add.text(this.game.width - 250, 15, "HIGH SCORE " + highScore, {fill: "#FFB6C1", font: 30 + "px Impact"});
+      var scoreText = game.add.text(0, 250, "HIGH SCORE " + highScore, {fill: "#FFB6C1", font: 30 + "px Impact"});
+      scoreText.position.x = game.width / 2 - scoreText.width / 2;
     }
   },
   update: function() {
