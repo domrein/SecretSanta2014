@@ -4,9 +4,9 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.6.0</string>
+        <string>3.5.3</string>
         <key>fileName</key>
-        <string>/Users/paulmilham/Repos/SecretSanta2014/assets/Sprites.tps</string>
+        <string>/Users/paul/Repos/SecretSanta2014/assets/Sprites.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -74,7 +74,7 @@
         <key>jpgQuality</key>
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
-        <uint>1</uint>
+        <uint>0</uint>
         <key>webpQualityLevel</key>
         <uint>101</uint>
         <key>textureSubPath</key>
@@ -190,7 +190,6 @@
         <array>
             <filename>Background_1.png</filename>
             <filename>BuildingTile_1.png</filename>
-            <filename>Cat_1.png</filename>
             <filename>FireAirborne_1.png</filename>
             <filename>FireAirborne_2.png</filename>
             <filename>FireAirborne_3.png</filename>
@@ -209,6 +208,15 @@
             <filename>MotorcycleRider_2.png</filename>
             <filename>MotorcycleRider_3.png</filename>
             <filename>Title_1.png</filename>
+            <filename>Cat1_1.png</filename>
+            <filename>Cat1_2.png</filename>
+            <filename>Cat2_1.png</filename>
+            <filename>Cat2_2.png</filename>
+            <filename>Cat3_1.png</filename>
+            <filename>Cat3_2.png</filename>
+            <filename>CityScape1_1.png</filename>
+            <filename>CityScape2_1.png</filename>
+            <filename>CityScape3_1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

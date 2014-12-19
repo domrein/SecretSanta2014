@@ -5,6 +5,9 @@ var Title = {
     var _this = this;
     this.game.add.sprite(0, 0, "Sprites", "Background_1.png");
     
+    var bgBuildings = this.game.add.tileSprite(0, 0, game.width, game.height, "Sprites", "CityScape1_1.png");
+    bgBuildings.autoScroll(-125, 0);
+    
     var roof = this.game.add.tileSprite(0, 380, game.width, game.height - 380, "Sprites", "BuildingTile_1.png");
     roof.autoScroll(-600, 0);
 
@@ -13,7 +16,7 @@ var Title = {
     motoBody.animations.add("drive", ["MotorcycleBody_1.png", "MotorcycleBody_2.png", "MotorcycleBody_3.png", "MotorcycleBody_2.png"], 15, true);
     motoBody.play("drive");
     var motoRider = this.game.add.sprite(0, 0, "Sprites");
-    motoRider.animations.add("drive", ["MotorcycleRider_1.png", "MotorcycleRider_2.png", "MotorcycleRider_3.png", "MotorcycleRider_2.png"], 5, true);
+    motoRider.animations.add("drive", ["MotorcycleRider_1.png", "MotorcycleRider_2.png", "MotorcycleRider_3.png", "MotorcycleRider_2.png"], 25, true);
     motoRider.play("drive");
     var motoFront = this.game.add.sprite(0, 0, "Sprites", "MotorcycleDash_1.png");
     dave.addChild(motoBody);
@@ -27,10 +30,12 @@ var Title = {
     titleText.position.x = game.width / 2;
     titleText.position.y = game.height / 2 - 70;
 
-    this.game.input.onDown.add(function(event) {
+    function startGame(event) {
       // game.scale.startFullScreen();
       game.state.start("Play");
-    });
+    }
+    game.input.keyboard.onDownCallback = startGame;
+    this.game.input.onDown.add(startGame);
   },
   update: function() {
   },
