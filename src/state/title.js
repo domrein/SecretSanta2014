@@ -36,6 +36,10 @@ var Title = {
     }
     game.input.keyboard.onDownCallback = startGame;
     this.game.input.onDown.add(startGame);
+
+    if (highScore) {
+      var scoreText = game.add.text(this.game.width - 250, 15, "HIGH SCORE " + highScore, {fill: "#FFB6C1", font: 30 + "px Impact"});
+    }
   },
   update: function() {
   },

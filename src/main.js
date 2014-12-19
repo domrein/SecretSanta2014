@@ -4,3 +4,5 @@ game.state.add("Preload", Preload);
 game.state.add("Title", Title);
 game.state.add("Play", Play);
 game.state.start("Boot");
+
+var highScore = 0;
